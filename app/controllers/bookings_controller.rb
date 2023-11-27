@@ -25,12 +25,25 @@ class BookingsController < ApplicationController
   def create
     @booking = booking.new(booking_params)
     @booking.user = current_user
+    @booking.route = @route
+    @booking.booking_price = (@booking.end_date - @booking.start_date).to_i * @booking.route.price
+
+    if @booking.save
+      flash[:notice] = 'Booking created'
+      redirect_to route_path(@booking.route)
+    else
+      render 'routes/show'
+    end
   end
 
   # DELETE /bookings/:booking_id
   # as a user I can destroy a booking
   def destroy
-
+    if @booking.destroy
+      redirect_to cars_path(@booking)
+    else
+      render :index
+    end
   end
 
   private

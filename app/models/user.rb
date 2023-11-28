@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :routes
   has_many :bookings
   validates_length_of :password, in: 6..20, on: :create
+  validates :full_name, :phone_number, :birth_date, :email, :password, :address, presence: true
 end

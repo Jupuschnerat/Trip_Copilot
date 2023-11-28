@@ -96,8 +96,6 @@ GEM
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
-    bootstrap3-datetimepicker-rails (4.17.47)
-      momentjs-rails (>= 2.8.1)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -160,8 +158,6 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.20.0)
-    momentjs-rails (2.29.4.1)
-      railties (>= 3.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.6)
@@ -174,6 +170,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.6.1)
+    nokogiri (1.15.5-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -282,13 +280,13 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  arm64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
   bootstrap (~> 5.2)
-  bootstrap3-datetimepicker-rails
   capybara
   debug
   devise
@@ -297,7 +295,6 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
-  momentjs-rails
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)

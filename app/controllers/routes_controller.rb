@@ -26,6 +26,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit()
+    params.require(:route).permit(:departure_place, :duration, :budget)
   end
 end

@@ -19,9 +19,9 @@
 }
 
 .illustration {
-  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("illustration.jpeg"));
-  width: 10%;
-  height: 10%;
+  background-image: url(asset_path("illustration.jpeg"));
+  width: 100px;
+  height: 100px;
 }
 
 /* Custom, iPhone Retina */
@@ -50,6 +50,11 @@
     background-repeat: no-repeat;
     background-position: bottom;
   }
+  .illustration {
+    background-image: url(asset_path("illustration.jpeg"));
+    width: 100px;
+    height: 100px;
+  }
 }
 
 /* Small Devices, Tablets */
@@ -61,6 +66,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+  }
+  .illustration {
+    background-image: url(asset_path("illustration.jpeg"));
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -74,6 +84,11 @@
     background-repeat: no-repeat;
     background-position: bottom;
   }
+  .illustration {
+    background-image: url(asset_path("illustration.jpeg"));
+    width: 100px;
+    height: 100px;
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -85,5 +100,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+  }
+  .illustration {
+    background-image: url(asset_path("illustration.jpeg"));
+    width: 100px;
+    height: 100px;
   }
 }

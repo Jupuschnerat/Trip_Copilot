@@ -1,0 +1,8 @@
+.cover {
+  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
+  height: 720px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}

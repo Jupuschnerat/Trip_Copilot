@@ -19,8 +19,9 @@
 }
 
 .illustration {
-  width: 50%;
-  height: 50%;
+  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("illustration.jpeg"));
+  width: 10%;
+  height: 10%;
 }
 
 /* Custom, iPhone Retina */

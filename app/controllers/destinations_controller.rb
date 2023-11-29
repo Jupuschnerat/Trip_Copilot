@@ -5,7 +5,7 @@ class DestinationsController < ApplicationController
   # as a user I can check all the destinations of my route
   # GET /destinations
   def index
-    @destinations = destinations.all
+    @destinations = Destination.all
   end
 
   # as a user I can see more detailes of an specific destination

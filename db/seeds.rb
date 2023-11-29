@@ -7,15 +7,3 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-puts "Seeding..."
-
-destiny = Destination.new(
-  price: "199",
-  transportation: "train",
-  departure_day: Date.parse("2023-11-30"),
-)
-
-t.float :price
-t.string :transportation
-t.date :departure_day

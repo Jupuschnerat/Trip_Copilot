@@ -1,1 +1,6 @@
 "Hello"
+<%= simple_form_for(@route) do |f| %>
+  <%= f.input :city %>
+  <%= f.input :address %>
+  <%= f.submit %>
+<% end %>

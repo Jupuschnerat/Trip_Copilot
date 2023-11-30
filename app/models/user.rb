@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :routes
   has_many :bookings
+  has_one_attached :image
   validates_length_of :password, in: 6..20, on: :create
 end

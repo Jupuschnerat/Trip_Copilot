@@ -30,7 +30,7 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
     @route.user = current_user
     @route.save
-    redirect_to route_path(@route)
+
 
     base_url = 'https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=PAR&maxPrice=200'
     headers = {
@@ -50,19 +50,21 @@ class RoutesController < ApplicationController
 
     #creating destinations
     @destination = Destination.new()
-    @destination.price = cheapest_flight["price"]/2
+    @destination.price = (cheapest_flight["price"]["total"].to_i)/2
     @destination.transportation = "plane"
     @destination.departure_day = cheapest_flight["departureDate"]
-    @destination.arrival_day = cheapest_flight["departureDate"]
+    @destination.arrival_date = cheapest_flight["departureDate"]
     @destination.departure_city = cheapest_flight["origin"]
     @destination.arrival_city = cheapest_flight["destination"]
 
-    @route = Route.find(params[:id]) # should I have this?
     @destination.route = @route
+    @destination.save
 
     #updating budget
 
 
+
+    redirect_to route_path(@route)
 
   end
 

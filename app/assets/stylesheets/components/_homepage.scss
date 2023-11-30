@@ -36,8 +36,12 @@
   font-size: 36px;
 }
 .btnhp {
-  border-radius: 6px;
+  background-color: #FE8883;
+  border-radius: 10px;
   box-shadow: 1px 1px 4px $darkish-blue;
+}
+.btnhp:hover {
+  background-color: #D4574A;
 }
 .celcontent {
   background-image: url(asset_path("previewhp.png"));

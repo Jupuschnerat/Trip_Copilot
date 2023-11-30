@@ -7,7 +7,6 @@
   background-position: bottom;
   position: relative;
 }
-
 .searchbox {
   box-shadow: 2px 2px 50px 2px $darkish-blue;
   background-color: $neutral-02;
@@ -18,7 +17,6 @@
   border-radius: 10px;
   text-align: center;
 }
-
 .illustration {
   background-image: url(asset_path("illustration.png"));
   height: 300px;
@@ -72,7 +70,7 @@
 @media only screen and (min-width : 320px) {
   .cover {
     background-image: url(asset_path("bannertest.png"));
-    height: 250px;
+    height: 300px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -83,8 +81,8 @@
   }
   .illustration {
     background-image: url(asset_path("illustration.png"));
-    height: 300px;
-    width: 60vw;
+    height: 250px;
+    width: 50vw;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;

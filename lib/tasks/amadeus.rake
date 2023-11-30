@@ -1,5 +1,7 @@
 require "json"
 require "open-uri"
+require 'net/http'
+require 'uri'
 
 namespace :amadeus do
 
@@ -22,14 +24,8 @@ namespace :amadeus do
     p cheapest_flight
 
 
-
-
   end
 
-
-
-  require 'net/http'
-  require 'uri'
 
   desc "Get the token from the API"
   task token: :environment do

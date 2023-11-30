@@ -31,13 +31,26 @@ class RoutesController < ApplicationController
     @route.user = current_user
     @route.save
 
+    # Get the toke
+    uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
 
-    base_url = 'https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=PAR&maxPrice=200'
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request['Content-Type'] = 'application/x-www-form-urlencoded'
+    request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
+
+    response = http.request(request)
+
+    api_return_json = JSON.parse(response.body)
+
+    p api_return_json["access_token"]
+
+    base_url = "https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=#{@route.departure_place}&maxPrice=#{@route.budget.floor}"
     headers = {
-      'Authorization' => "Bearer #{ENV["AMADEUS_API_TOKEN"]}"
+      'Authorization' => "Bearer #{api_return_json["access_token"]}"
     }
-# endpoint =
-# origin='PAR'
+
 
     url = base_url
     api_return = URI.open(url, headers).read

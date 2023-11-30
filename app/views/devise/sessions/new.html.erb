@@ -1,5 +1,5 @@
-<div class="container form my-5 p-7 text-primary">
-  <h2 class="p-1 mb-5"><strong>Log in</strong></h2>
+<div class="container form p-4 text-primary">
+  <h2 class="p-1 mb-4"><strong>Log in</strong></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
@@ -23,7 +23,7 @@
       <% end %>
     </div>
 
-  <div class='text-center'>
+  <div class='text-center py-2'>
     <%= render "devise/shared/links" %>
   </div>
 </div>

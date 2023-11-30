@@ -1,6 +1,6 @@
 <div class='backgroundpattern'>
-  <div class="container form my-5 p-5 text-primary">
-    <h2 class="p-1 mb-5"><strong>Change your password</strong></h2>
+  <div class="container form p-4 text-primary">
+    <h2 class="p-1 mb-4"><strong>Change your password</strong></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>

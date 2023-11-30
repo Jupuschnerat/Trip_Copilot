@@ -19,10 +19,8 @@ namespace :amadeus do
     ordered_flights = flights.sort_by { |flight| flight['price']['total']}
     cheapest_flight = ordered_flights[0]
     origin = cheapest_flight["origin"]
-    Destination.create(
-      name: "La Tour d'Argent",
-      address: "15 Quai de la Tournelle, 75005 Paris"
-    )
+    p cheapest_flight
+
 
 
 

@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  # before_action :set_route, only: [:show, :edit, :update, :destroy]
 
   # as a user I can check all the routes of my search
   # GET /routes
@@ -12,7 +12,7 @@ class RoutesController < ApplicationController
   # as a user I can search?create? a new route
   # GET routes/new
   def new
-
+    @route = Route.new
   end
 
 

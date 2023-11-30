@@ -10,7 +10,6 @@
                   input_html: { autocomplete: "full-name" } %>
         <%= f.input :email,
                   required: true,
-                  autofocus: true,
                   input_html: { autocomplete: "email" }%>
         <div class="col-7">
         <%= f.input :password,
@@ -37,6 +36,9 @@
         <%= f.input :address,
                   required: true,
                   input_html: { autocomplete: "address" } %>
+        </div>
+        <div>
+        <%= f.input :image, as: :file %>
         </div>
 
       <div class='text-center'>

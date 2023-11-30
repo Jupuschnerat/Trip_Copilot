@@ -5,6 +5,3 @@ import "@popperjs/core"
 import "bootstrap"
 //= require moment
 //= require bootstrap-datepicker
-import flatpickr from "flatpickr"
-import "flatpickr/dist/flatpickr.min.css"
-flatpickr(".datepicker", {})

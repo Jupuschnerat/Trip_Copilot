@@ -29,10 +29,38 @@
   box-shadow: 1px 1px 20px 1px $darkish-blue;
   border-radius: 10px;
 }
-
+.hpwhite {
+  background-color: white;
+}
 .fa-solid {
   font-size: 36px;
 }
+.btnhp {
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px $darkish-blue;
+}
+.celcontent {
+  background-image: url(asset_path("previewhp.png"));
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 610px;
+  width: 290px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 1px 1px 20px 1px $darkish-blue;
+  border-radius: 50px;
+  overflow: hidden;
+  margin: 25px;
+}
+.transpo {
+  background-image: url(asset_path("transpo.png"));
+  height: 190px;
+  width: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
 
 /* Custom, iPhone Retina */
 // @media only screen and (min-width : 320px) {

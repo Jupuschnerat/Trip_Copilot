@@ -1,1 +1,6 @@
-<%= @route %>
+
+<ul>
+  <% @route.destinations.each do |destination| %>
+      <li><%= destination.departure_city%> to <%= destination.arrival_city%></li>
+  <% end %>
+</ul>

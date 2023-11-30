@@ -38,7 +38,8 @@
                   input_html: { autocomplete: "address" } %>
         </div>
         <div>
-        <%= f.input :image, as: :file %>
+        <%= f.input :image, as: :file,
+                    required: true %>
         </div>
 
       <div class='text-center'>

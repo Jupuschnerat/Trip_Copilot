@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_160944) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_184719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_160944) do
     t.index ["route_id"], name: "index_destinations_on_route_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "iata"
+    t.string "icao"
+    t.string "country_code"
+    t.string "region_name"
+    t.string "airport"
+    t.string "latitude"
+    t.string "longitude"
+    t.bigint "city_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_locations_on_city_id"
+  end
+
   create_table "routes", force: :cascade do |t|
     t.string "departure_place"
     t.integer "duration"
@@ -91,5 +105,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_160944) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "destinations", "routes"
+  add_foreign_key "locations", "cities"
   add_foreign_key "routes", "users"
 end

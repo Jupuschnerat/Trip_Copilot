@@ -48,6 +48,22 @@ class RoutesController < ApplicationController
     origin = cheapest_flight["origin"]
     p cheapest_flight
 
+    #creating destinations
+    @destination = Destination.new()
+    @destination.price = cheapest_flight["price"]/2
+    @destination.transportation = "plane"
+    @destination.departure_day = cheapest_flight["departureDate"]
+    @destination.arrival_day = cheapest_flight["departureDate"]
+    @destination.departure_city = cheapest_flight["origin"]
+    @destination.arrival_city = cheapest_flight["destination"]
+
+    @route = Route.find(params[:id]) # should I have this?
+    @destination.route = @route
+
+    #updating budget
+
+
+
   end
 
 

@@ -1,5 +1,5 @@
 .cover {
-  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
+  background-image: url(asset_path("bannertest.png"));
   height: 720px;
   width: 100%;
   background-size: cover;
@@ -9,101 +9,135 @@
 }
 
 .searchbox {
-  box-shadow: 5px 5px 0.9px $darkish-blue;
+  box-shadow: 2px 2px 50px 2px $darkish-blue;
   background-color: $neutral-02;
   width: 88%;
   position: absolute;
   margin-bottom: 20px;
   bottom: 0;
-  border-radius: 10%;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .illustration {
-  background-image: url(asset_path("illustration.jpeg"));
-  width: 100px;
-  height: 100px;
+  background-image: url(asset_path("illustration.png"));
+  height: 300px;
+  width: 60vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  box-shadow: 1px 1px 20px 1px $darkish-blue;
+  border-radius: 10px;
+}
+
+.fa-solid {
+  font-size: 36px;
 }
 
 /* Custom, iPhone Retina */
-@media only screen and (min-width : 320px) {
-  .cover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
-    height: 250px;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-  }
+// @media only screen and (min-width : 320px) {
+//   .cover {
+//     background-image: url(asset_path("bannertest.png"));
+//     height: 250px;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//   }
+//   .searchbox {
+//     text-align: center;
+//   }
+//   .illustration {
+//     background-image: url(asset_path("illustration.png"));
+//     height: 300px;
+//     width: 60vw;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//     box-shadow: 1px 1px 20px 1px $darkish-blue;
+//   }
+// }
 
-  .searchbox {
-    text-align: center;
-  }
-}
+// /* Extra Small Devices, Phones */
+// @media only screen and (min-width : 480px) {
+//   .cover {
+//     background-image: url(asset_path("bannertest.png"));
+//     height: 350px;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//   }
+//   .illustration {
+//     background-image: url(asset_path("illustration.png"));
+//     height: 300px;
+//     width: 60vw;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//     box-shadow: 1px 1px 20px 1px $darkish-blue;
+//   }
+// }
 
-/* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
-  .cover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
-    height: 350px;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-  }
-  .illustration {
-    background-image: url(asset_path("illustration.jpeg"));
-    width: 100px;
-    height: 100px;
-  }
-}
+// /* Small Devices, Tablets */
+// @media only screen and (min-width : 768px) {
+//   .cover {
+//     background-image: url(asset_path("bannertest.png"));
+//     height: 500px;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//   }
+//   .illustration {
+//     background-image: url(asset_path("illustration.png"));
+//     height: 300px;
+//     width: 60vw;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//     box-shadow: 1px 1px 20px 1px $darkish-blue;
+//   }
+// }
 
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-  .cover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
-    height: 500px;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-  }
-  .illustration {
-    background-image: url(asset_path("illustration.jpeg"));
-    width: 100px;
-    height: 100px;
-  }
-}
+// /* Medium Devices, Desktops */
+// @media only screen and (min-width : 992px) {
+//   .cover {
+//     background-image: url(asset_path("bannertest.png"));
+//     height: 720px;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//   }
+//   .illustration {
+//     background-image: url(asset_path("illustration.png"));
+//     height: 300px;
+//     width: 60vw;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//     box-shadow: 1px 1px 20px 1px $darkish-blue;
+//   }
+// }
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-  .cover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
-    height: 250px ;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-  }
-  .illustration {
-    background-image: url(asset_path("illustration.jpeg"));
-    width: 100px;
-    height: 100px;
-  }
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-  .cover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(asset_path("banner.png"));
-    height: 250px;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-  }
-  .illustration {
-    background-image: url(asset_path("illustration.jpeg"));
-    width: 100px;
-    height: 100px;
-  }
-}
+// /* Large Devices, Wide Screens */
+// @media only screen and (min-width : 1200px) {
+//   .cover {
+//     background-image: url(asset_path("bannertest.png"));
+//     height: 800px;
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//   }
+//   .illustration {
+//     background-image: url(asset_path("illustration.png"));
+//     height: 300px;
+//     width: 60vw;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: bottom;
+//     box-shadow: 1px 1px 20px 1px $darkish-blue;
+//   }
+// }

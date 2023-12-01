@@ -77,3 +77,4 @@ end
 gem 'faraday'
 gem 'amadeus'
 gem 'httparty'
+gem "cloudinary"

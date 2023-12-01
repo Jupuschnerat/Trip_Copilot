@@ -1,6 +1,37 @@
+<div class='backgroundpattern'>
+  <div class="container p-4">
+    <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
+    <h6 class="m-3 mb-3">Trip summary</h6>
+    <% @route.destinations.each do |destination| %>
+    <div class="card mb-0 mx-auto">
+      <div class="card-body text-primary d-flex">
+        <div class="row">
+          <div class="col my-auto mx-2">
+            <i class="fa-solid fa-plane smallicon"></i>
+          </div>
+          <div class="col mx-3 my-auto">
+            <p class="card-text smallfont mb-1">From</p>
+            <%= destination.departure_city %>
+          </div>
+          <div class="col mx-5 my-auto">
+            <p class="card-text smallfont mb-1">To</p>
+            <%= destination.arrival_city%>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent border d-flex">
+        <div class="row">
+          <div class="col">
+            <p class="card-text smallfont mb-1">Total Price</p>
+            $ <%= destination.price %>
+          </div>
+        </div>
+    </div>
 
-<ul>
-  <% @route.destinations.each do |destination| %>
-      <li><%= destination.departure_city%> to <%= destination.arrival_city%></li>
-  <% end %>
-</ul>
+
+
+
+      <% end %>
+
+  </div>
+</div>

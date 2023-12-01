@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+<<<<<<< HEAD
 import Amadeus from "amadeus"
 // Connects to data-controller="locationautocomplete"
 var amadeus = new Amadeus({
@@ -16,3 +17,11 @@ amadeus.shopping.flightOffersSearch.get({
 }).catch(function(responseError){
   console.log(responseError.code);
 });
+=======
+
+// Connects to data-controller="locationautocomplete"
+export default class extends Controller {
+  connect() {
+  }
+}
+>>>>>>> 0d16434bede3ca38f1811d70f179f5f59d05bcf4

@@ -4,14 +4,14 @@ class DestinationsController < ApplicationController
 
   # as a user I can check all the destinations of my route
   # GET /destinations
-  def index
-    @destinations = Destination.all
-  end
+  # def index
+    # @destinations = Destination.all
+  # end
 
   # as a visitor I can see more detailes of an specific destination
   # GET /destinations/:destination_id
-  def show
-    @destination = Destination.find(params[:id])
+  # def show
+    # @destination = Destination.find(params[:id])
 
 
 
@@ -27,7 +27,7 @@ class DestinationsController < ApplicationController
     # @departure_city = params[:departure_city]
     # response = amadeus.reference_data.locations.get(region_name: params['regionName'], iata: ['iata'])
     # render json: response.data.to_json
-  end
+  # end
 
 
 

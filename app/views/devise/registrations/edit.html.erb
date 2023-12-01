@@ -1,6 +1,6 @@
 <div class='backgroundpattern'>
   <div class="container form p-4 text-primary bg-info">
-    <h2 class="p-1 mb-4"><strong>Edit</strong> <%= resource_name.to_s.humanize %></h2>
+    <h2 class="p-1 mb-4"><strong>Edit <%= resource_name.to_s.humanize %></strong></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -43,18 +43,15 @@
 
 
       <div class='text-center'>
-        <div class="btn btn-primary">
-          <%= f.button :submit, "Sign up" %>
+        <div class="btn btn-success btn-sm">
+          <%= f.button :submit, "Confirm changes" %>
         </div>
   <% end %>
 
+          <h5 class="mt-5 mb-3">Are you unhappy?</h5>
 
-        <h3>Cancel my account</h3>
 
-          <p>Unhappy?</p>
-
-          <div class='btn btn-secondary'>
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+          <%= button_to "Terminate account", registration_path(resource_name), class: "btn btn-primary btn-sm", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
           </div>
             <div class='text-center'>
           <%= link_to "Back", :back %>

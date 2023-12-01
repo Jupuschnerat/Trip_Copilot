@@ -7,16 +7,6 @@
   background-position: bottom;
   position: relative;
 }
-.searchbox {
-  box-shadow: 2px 2px 50px 2px $darkish-blue;
-  background-color: $neutral-02;
-  width: 88%;
-  position: absolute;
-  margin-bottom: 20px;
-  bottom: 0;
-  border-radius: 10px;
-  text-align: center;
-}
 .illustration {
   background-image: url(asset_path("illustration.png"));
   height: 300px;
@@ -32,16 +22,6 @@
 }
 .fa-solid {
   font-size: 36px;
-}
-.btnhp {
-  background-color: #FE8883;
-  border-radius: 10px;
-  box-shadow: 1px 1px 4px $darkish-blue;
-  transition: 1s;
-  text-decoration: none;
-}
-.btnhp:hover {
-  background-color: #D4574A;
 }
 .celcontent {
   background-image: url(asset_path("previewhp.png"));

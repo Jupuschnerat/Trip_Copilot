@@ -1,6 +1,11 @@
 <div class="cover d-flex">
-  <div class='searchbox mx-4 mb-1'>
-    <p>Explore <strong>endless</strong><br> destinations</p>
+  <div class="boxx mx-3 mb-0">
+    <%= form_tag root_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control searchbox border border-dark mx-4 mb-3",
+      placeholder: "Enter a city or an airport" %>
+    <% end %>
   </div>
 </div>
   <div class='subtitle pt-8'>
@@ -25,12 +30,12 @@
   <div class="row">
     <h4><i class="fa-solid fa-circle-check"></i> Tell us where you are</h4>
   </div>
-  <div class="row mt-3">
+  <div class="row mt-3 mb-3">
     <div class="col-8">
     <h4><i class="fa-solid fa-circle-check"></i> Define your budget</h4>
     </div>
     <div class="col-4">
-      <p class="btn btnhp text-info">Build my route</p>
+      <a href="/routes/new" class="btn btnhp text-info">Build my route</a>
     </div>
   </div>
   <div class="row mt-1">

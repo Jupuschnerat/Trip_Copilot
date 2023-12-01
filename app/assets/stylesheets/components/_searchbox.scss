@@ -1,0 +1,19 @@
+.boxx {
+  width: 95%;
+  margin-bottom: 0px;
+  height: 75px;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  box-shadow: 1px 1px 20px 1px $darkish-blue;
+  border-radius: 10px;
+}
+.searchbox {
+  background-color: $neutral-02;
+  width: 85vw;
+  height: 45px;
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 0;
+  border-radius: 30px;
+}

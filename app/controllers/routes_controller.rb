@@ -37,7 +37,7 @@ class RoutesController < ApplicationController
     budget = @route.budget
     stop_route_builder = 0
 
-    while stop_route_builder == 0 || number_of_destinations < 2
+    while stop_route_builder == 0 && number_of_destinations < 3
 
       # Find possible cities to fly
       cities_to_fly = find_cities_to_fly(origin, budget, token)
@@ -69,6 +69,7 @@ class RoutesController < ApplicationController
 
       # Updating budget, number_of_destinations and origin for next iteration
       number_of_destinations = destination[1][1]
+      # debugger
       budget = destination[1][2]
       origin = @destination.arrival_city
 

@@ -37,15 +37,17 @@ class RoutesController < ApplicationController
     budget = @route.budget
     stop_route_builder = 0
 
-    while stop_route_builder == 0 && number_of_destinations < 4
+    while stop_route_builder == 0 || number_of_destinations < 2
 
       # Find possible cities to fly
       cities_to_fly = find_cities_to_fly(origin, budget, token)
-      debugger
       if cities_to_fly[0] == 0
         stop_route_builder = 1
         user_message = cities_to_fly[2]
+        p user_message
+        break # stops the loop
       end
+
 
       # Define city to fly -> Define destination
       destination = define_destination(origin, cities_to_fly[1], number_of_destinations, budget, token)
@@ -113,6 +115,7 @@ class RoutesController < ApplicationController
         api_return_json = JSON.parse(api_return)
         cities_to_go = api_return_json["data"] # Arry of hashes
         cities_to_go_ordered = cities_to_go.sort_by { |flight| flight['price']['total'].to_f}
+        # debugger
         return [1, cities_to_go_ordered, 'Success']
       rescue
         return [0, 0, "No flights from this origin"]
@@ -125,7 +128,6 @@ class RoutesController < ApplicationController
       next_destination = nil
       i = 0
       while next_destination == nil || next_destination[0] == 0
-        debugger
         next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
         if next_destination[0] == 1
           if (cities_to_fly[i]["price"]["total"].to_f)/2 < budget
@@ -139,7 +141,12 @@ class RoutesController < ApplicationController
         end
 
         if i + 1 == cities_to_fly.length
-          return [0, 2, "No flights from any of cities reachable from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
+          # If no cities has a next destination. We pick up the first possible city to be the destination
+          destination = cities_to_fly[0]
+          number_of_destinations += 1
+          budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
+          debugger
+          return [1, [destination, number_of_destinations, budget], "You can't go further from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
         end
         i += 1
       end

@@ -5,27 +5,13 @@ require "net/http"
 class RoutesController < ApplicationController
   before_action :set_route, only: [:show]
 
-  # as a user I can check all the routes of my search
-  # GET /routes
-
-
-  # as a user I can see more detailes of an specific route
-  # GET /routes/:route_id
-
-
-  # as a user I can search?create? a new route
-  # GET routes/new
   def new
     @route = Route.new
   end
 
   def show
-
   end
 
-
-  # as a user I can search?create a new route
-  # POST /routes
   def create
     @route = Route.new(route_params)
     @route.user = current_user
@@ -58,7 +44,7 @@ class RoutesController < ApplicationController
 
       # Persist destination on DB
       @destination = Destination.new()
-      @destination.price = (destination[1][0]["price"]["total"].to_i)/2
+      @destination.price = (destination[1][0]["price"]["total"].to_f)/2
       @destination.transportation = "plane"
       @destination.departure_day = destination[1][0]["departureDate"]
       @destination.arrival_date = destination[1][0]["departureDate"]
@@ -152,9 +138,3 @@ class RoutesController < ApplicationController
       end
     end
 end
-
-
-# Return codes
-# 0 no flights from this origin -> choose another city | Can we send back two returns? Yes. Using a matrix
-# 1 no budget to fly. Your trip ends on cities_to_go[i][origin]
-# 2 no flights from any of cities_to_go. our trip ends on cities_to_go[i][origin]

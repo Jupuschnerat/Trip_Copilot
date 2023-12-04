@@ -75,7 +75,6 @@ class RoutesController < ApplicationController
       # Repeat the process -> Go back to the begin of the loop
     end
 
-
     redirect_to route_path(@route)
 
   end
@@ -145,7 +144,7 @@ class RoutesController < ApplicationController
           destination = cities_to_fly[0]
           number_of_destinations += 1
           budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
-          debugger
+          # debugger
           return [1, [destination, number_of_destinations, budget], "You can't go further from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
         end
         i += 1

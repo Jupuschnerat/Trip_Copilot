@@ -68,28 +68,54 @@
     background-position: bottom;
     box-shadow: 1px 1px 20px 1px $darkish-blue;
   }
+  .celcontent {
+    background-image: url(asset_path("previewhp.png"));
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: 610px;
+    max-width: 320px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 1px 1px 20px 1px $darkish-blue;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 25px;
+  }
 }
 
-// /* Extra Small Devices, Phones */
-// @media only screen and (min-width : 480px) {
-//   .cover {
-//     background-image: url(asset_path("bannertest.png"));
-//     height: 350px;
-//     width: 100%;
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     background-position: bottom;
-//   }
-//   .illustration {
-//     background-image: url(asset_path("illustration.png"));
-//     height: 300px;
-//     width: 60vw;
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     background-position: bottom;
-//     box-shadow: 1px 1px 20px 1px $darkish-blue;
-//   }
-// }
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .cover {
+    background-image: url(asset_path("bannertest.png"));
+    height: 350px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+  .illustration {
+    background-image: url(asset_path("illustration.png"));
+    height: 300px;
+    width: 60vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    box-shadow: 1px 1px 20px 1px $darkish-blue;
+  }
+  .celcontent {
+    background-image: url(asset_path("previewhp.png"));
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: 610px;
+    max-width: 480px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 1px 1px 20px 1px $darkish-blue;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 25px;
+  }
+}
 
 // /* Small Devices, Tablets */
 // @media only screen and (min-width : 768px) {

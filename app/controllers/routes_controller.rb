@@ -136,7 +136,14 @@ class RoutesController < ApplicationController
 
   end
 
-
+  def favorite
+    # grabbing the route
+    @route = Route.all.find(params[:id])
+    # creating a favorite route with that route and current user's id
+    Favorite.create(user_id: current_user.id, route_id: @route.id)
+    # redirecting to the route's show page
+    redirect_to route_path(@route)
+  end
 
 
 

@@ -1,14 +1,37 @@
-<div class="cover d-flex">
+<div class="cover d-flex flex-column">
   <div class="boxx mx-3 mb-0">
     <%= form_tag root_path, method: :get do %>
       <%= text_field_tag :query,
       params[:query],
-      class: "form-control searchbox border border-dark mx-4 mb-3",
+      class: "form-control searchbox border border-dark mx-4 mb-3 mt-3",
       placeholder: "Enter a city or an airport" %>
     <% end %>
   </div>
+  <% if params[:query].present? && @results == 1 %>
+    <div class="search_results mx-3 mb-0">
+      <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control searchbox border border-dark mx-4 mb-3 mt-3",
+        placeholder: "Enter a city or an airport" %>
+      <% end %>
+      <div>
+        <p class="text-center">The cheapest place from <%= @origin %> is: </p>
+        <p class="text-center"><%= @destination %></p>
+        <p class="text-center">You can go by <strong>plane</strong> with:</p>
+        <p class="text-center"><%= @price %></p>
+      </div>
+
+    </div>
+  <% else %>
+    <p><%= @user_message %></p>
+    </div>
+  <% end %>
+
+
+
 </div>
-  <div class='subtitle pt-8'>
+  <div class='subtitle pt-5'>
     <h1 class='text-primary text-center p-4'><strong>Explore the world with our trip suggestions</strong></h1>
   </div>
 

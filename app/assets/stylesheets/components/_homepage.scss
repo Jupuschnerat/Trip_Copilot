@@ -1,6 +1,6 @@
 .cover {
   background-image: url(asset_path("bannertest.png"));
-  height: 720px;
+  // height: 900px;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
-  box-shadow: 0px 0px 4px 0px $darkish-blue;
+  // box-shadow: 0px 0px 4px 0px $darkish-blue;
   border-radius: 10px;
 }
 .hpwhite {

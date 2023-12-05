@@ -1,9 +1,9 @@
 <div class='backgroundpattern'>
   <div class="container p-4">
     <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
-    <h6 class="m-3 mb-3">Trip summary</h6>
+    <h6 class="m-3 mb-4">Trip summary</h6>
     <% @route.destinations.each do |destination| %>
-    <div class="card mb-0 mx-auto">
+    <div class="card mx-auto my-5">
       <div class="card-body text-primary d-flex">
         <div class="row">
           <div class="col my-auto mx-2">
@@ -22,19 +22,12 @@
       <div class="card-footer bg-transparent border d-flex">
         <div class="row">
           <div class="col">
-            <p class="card-text smallfont mb-1">Total Price</p>
+            <p class="card-text smallfont mb-1">Price</p>
             $ <%= destination.price %>
           </div>
         </div>
     </div>
-    <% end %>
-
   </div>
-</div>
-<% if user_signed_in? %>
-  <% if @route.favorite?(current_user) %>
-    <%= button_to "Remove from Favorites", favorite_path(@route), method: "delete" %>
-  <% else %>
-    <%= button_to "Add to Favorites", favorite_path(@route), method: "post" %>
   <% end %>
-<% end %>
+</div>
+</div>

@@ -63,16 +63,16 @@ class RoutesController < ApplicationController
     end # End of while
 
     redirect_to route_path(@route)
+  end
 
-
-    def favorite
-      # grabbing the route
-      @route = Route.all.find(params[:id])
-      # creating a favorite route with that route and current user's id
-      Favorite.create(user_id: current_user.id, route_id: @route.id)
-      # redirecting to the route's show page
-      redirect_to route_path(@route)
-    end # End of favorite
+  def favorite
+    # grabbing the route
+    @route = Route.all.find(params[:id])
+    # creating a favorite route with that route and current user's id
+    Favorite.create(user_id: current_user.id, route_id: @route.id)
+    # redirecting to the route's show page
+    redirect_to route_path(@route)
+  end # End of favorite
 
   private
 
@@ -86,63 +86,61 @@ class RoutesController < ApplicationController
 
   # ===== Methods used in the iteration =======
     # Get the token
-    def get_token
-      uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request['Content-Type'] = 'application/x-www-form-urlencoded'
-      request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
-      response = http.request(request)
-      response_json = JSON.parse(response.body)
-      token = response_json["access_token"]
-      return token
-    end # End of get_token
+  def get_token
+    uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request['Content-Type'] = 'application/x-www-form-urlencoded'
+    request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
+    response = http.request(request)
+    response_json = JSON.parse(response.body)
+    token = response_json["access_token"]
+    return token
+  end # End of get_token
 
     # Find cities to fly from a given origin
-    def find_cities_to_fly(origin, budget, token)
-      begin
-        base_url = "https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=#{origin}&maxPrice=#{budget.floor}"
-        headers = {'Authorization' => "Bearer #{token}"}
-        api_return = URI.open(base_url, headers).read
-        api_return_json = JSON.parse(api_return)
-        cities_to_go = api_return_json["data"] # Arry of hashes
-        cities_to_go_ordered = cities_to_go.sort_by { |flight| flight['price']['total'].to_f}
-        # debugger
-        return [1, cities_to_go_ordered, 'Success']
-      rescue
-        return [0, 0, "No flights from this origin"]
-      end # End of begin
-
-    end # End of find_cities_to_fly
+  def find_cities_to_fly(origin, budget, token)
+    begin
+      base_url = "https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=#{origin}&maxPrice=#{budget.floor}"
+      headers = {'Authorization' => "Bearer #{token}"}
+      api_return = URI.open(base_url, headers).read
+      api_return_json = JSON.parse(api_return)
+      cities_to_go = api_return_json["data"] # Arry of hashes
+      cities_to_go_ordered = cities_to_go.sort_by { |flight| flight['price']['total'].to_f}
+      # debugger
+      return [1, cities_to_go_ordered, 'Success']
+    rescue
+      return [0, 0, "No flights from this origin"]
+    end # End of begin
+  end # End of find_cities_to_fly
 
     # Define a destination from a given city
-    def define_destination(origin, cities_to_fly, number_of_destinations, budget, token)
-      next_destination = nil
-      i = 0
-      while next_destination == nil || next_destination[0] == 0
-        next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
-        if next_destination[0] == 1
-          if (cities_to_fly[i]["price"]["total"].to_f)/2 < budget
-            destination = cities_to_fly[i] # The city is a hash. Cities_to_fly is an array of hashs
-            number_of_destinations += 1
-            budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
-            return [1, [destination, number_of_destinations, budget], 'Sucess']
-          else
-            return [0, 1, "No budget to fly. Your trip ends on #{cities_to_fly[i]["origin"]}"]
-          end # End of if
-        end # End of if
-
-        if i + 1 == cities_to_fly.length
-          # If no cities has a next destination. We pick up the first possible city to be the destination
-          destination = cities_to_fly[0]
+  def define_destination(origin, cities_to_fly, number_of_destinations, budget, token)
+    next_destination = nil
+    i = 0
+    while next_destination == nil || next_destination[0] == 0
+      next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
+      if next_destination[0] == 1
+        if (cities_to_fly[i]["price"]["total"].to_f)/2 < budget
+          destination = cities_to_fly[i] # The city is a hash. Cities_to_fly is an array of hashs
           number_of_destinations += 1
           budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
-          # debugger
-          return [1, [destination, number_of_destinations, budget], "You can't go further from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
+          return [1, [destination, number_of_destinations, budget], 'Sucess']
+        else
+          return [0, 1, "No budget to fly. Your trip ends on #{cities_to_fly[i]["origin"]}"]
         end # End of if
-        i += 1
-      end # End of while
-    end  # End of define_destination
-  end  # End of private
+      end # End of if
+
+      if i + 1 == cities_to_fly.length
+        # If no cities has a next destination. We pick up the first possible city to be the destination
+        destination = cities_to_fly[0]
+        number_of_destinations += 1
+        budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
+        # debugger
+        return [1, [destination, number_of_destinations, budget], "You can't go further from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
+      end # End of if
+      i += 1
+    end # End of while
+  end  # End of define_destination
 end # End of class

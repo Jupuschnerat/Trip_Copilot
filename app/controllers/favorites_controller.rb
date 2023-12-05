@@ -16,13 +16,20 @@ class FavoritesController < ApplicationController
 
   def create
     @route = Route.find(params[:route_id])
-    current_user.favorite_routes << @route
-    render json: { favorited: true }
+    @favorite = Favorite.new
+    @favorite.user = current_user
+    @favorite.route = @route
+    @favorite.save!
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   def destroy
-    @route = Route.find(params[:route_id])
-    current_user.favorite_routes.destroy(@route)
-    render json: { favorited: false }
+    @route = Route.find(params[:id])
+    @favorite = Favorite.find_by(user: current_user, route: @route)
+    @favorite.destroy
+    # current_user.favorite_routes.destroy(@route)
+    redirect_to favorites_path
   end
 end

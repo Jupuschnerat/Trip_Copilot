@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many  :favorites
+# app/models/user.rb
+  has_many :favorites
+  has_many :favorite_routes, through: :favorites, source: :route
+
   has_many :routes
   has_many :bookings
   has_one_attached :image

@@ -65,14 +65,22 @@ class RoutesController < ApplicationController
     redirect_to route_path(@route)
   end
 
-  def favorite
-    # grabbing the route
-    @route = Route.all.find(params[:id])
-    # creating a favorite route with that route and current user's id
-    Favorite.create(user_id: current_user.id, route_id: @route.id)
-    # redirecting to the route's show page
-    redirect_to route_path(@route)
-  end # End of favorite
+  def button_to_favorite(route)
+    if current_user.favorite_routes.include?(route)
+      button_to "Remove from Favorites", favorite_path(route), method: :delete, remote: true
+    else
+      button_to "Add to Favorites", favorites_path(route_id: route.id), method: :post, remote: true
+    end
+  end
+
+  # def favorite_routes
+  #   # grabbing the route
+  #   @route = Route.all.find(params[:id])
+  #   # creating a favorite route with that route and current user's id
+  #   Favorite.create(user_id: current_user.id, route_id: @route.id)
+  #   # redirecting to the route's show page
+  #   redirect_to route_path(@route)
+  # end # End of favorite
 
   private
 

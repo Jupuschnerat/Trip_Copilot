@@ -1,3 +1,7 @@
-<% @favorite.routes do |favorite| %>
-  <%= favorite.all %>
+<!-- app/views/favorites/index.html.erb -->
+
+<h1>Your Favorited Routes</h1>
+
+<% @favorited_routes.each do |route| %>
+  <p><%= link_to route.destinations, route_path(route) %></p>
 <% end %>

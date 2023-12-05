@@ -45,6 +45,12 @@
   background-position: bottom;
 }
 
+.numbered_item{
+  display: flex;
+  justify-content: flex start;
+  align-items: center;
+}
+
 
 // * Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {

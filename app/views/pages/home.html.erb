@@ -15,9 +15,9 @@
           <p class="center_text">You can go by <strong>plane</strong> with:</p>
           <p class="center_text search_field_box border border-dark"> $<%= @price %></p>
       </div>
-    <% else %>
-      <div>
-        <p><%= @user_message %></p>
+    <% elsif params[:query].present? && @results == 0%>
+      <div class="center_fields_inside_div">
+        <p class="center_text search_field_box border border-dark"><%= @user_message %></p>
       </div>
     <% end %>
 </div>
@@ -25,6 +25,11 @@
 
 </div>
   <div class='subtitle pt-5 <%= 'mt-20' if params[:query].present? %>'>
+    <% if params[:query].present? %>
+      <div class="text-center py-4">
+        <a href="/routes/new" class="btn btnhp text-info btn_cta py-3 px-3 m-6">Build a full route</a>
+      </div>
+    <% end %>
     <h1 class='text-primary text-center p-4'><strong>Explore the world with our trip suggestions</strong></h1>
   </div>
 

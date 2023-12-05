@@ -14,13 +14,14 @@ class PagesController < ApplicationController
       else
         @origin = cities_to_fly[1][0]["origin"]
         @destination = cities_to_fly[1][0]["destination"]
-        @price = (cities_to_fly[1][0]["price"]["total"].to_f)/2
+        @price = (cities_to_fly[1][0]["price"]["total"].to_i)/2
         @results = 1
       end
     end
       # Can I create a route on pages#home
       # @route = Route.new(:departure_place params[:query])
   end
+
 
   private
 

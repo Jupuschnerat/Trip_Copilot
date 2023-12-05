@@ -7,10 +7,10 @@ class RoutesController < ApplicationController
 
   def new
     @route = Route.new
-  end
+  end # End of new
 
   def show
-  end
+  end # End of show
 
   def create
     @route = Route.new(route_params)
@@ -32,7 +32,7 @@ class RoutesController < ApplicationController
         user_message = cities_to_fly[2]
         p user_message
         break # stops the loop
-      end
+      end  # End of if
 
 
       # Define city to fly -> Define destination
@@ -40,7 +40,7 @@ class RoutesController < ApplicationController
       if destination[0] == 0
         stop_route_builder = 1
         user_message = destination[2]
-      end
+      end # End of if
 
       # Persist destination on DB
       @destination = Destination.new()
@@ -60,22 +60,29 @@ class RoutesController < ApplicationController
       origin = @destination.arrival_city
 
       # Repeat the process -> Go back to the begin of the loop
-    end
+    end # End of while
 
     redirect_to route_path(@route)
 
-  end
 
+    def favorite
+      # grabbing the route
+      @route = Route.all.find(params[:id])
+      # creating a favorite route with that route and current user's id
+      Favorite.create(user_id: current_user.id, route_id: @route.id)
+      # redirecting to the route's show page
+      redirect_to route_path(@route)
+    end # End of favorite
 
   private
 
   def set_route
     @route = Route.find(params[:id])
-  end
+  end # End of set_route
 
   def route_params
     params.require(:route).permit(:departure_place, :budget)
-  end
+  end # End of route_params
 
   # ===== Methods used in the iteration =======
     # Get the token
@@ -90,7 +97,7 @@ class RoutesController < ApplicationController
       response_json = JSON.parse(response.body)
       token = response_json["access_token"]
       return token
-    end
+    end # End of get_token
 
     # Find cities to fly from a given origin
     def find_cities_to_fly(origin, budget, token)
@@ -105,9 +112,9 @@ class RoutesController < ApplicationController
         return [1, cities_to_go_ordered, 'Success']
       rescue
         return [0, 0, "No flights from this origin"]
-      end
+      end # End of begin
 
-    end
+    end # End of find_cities_to_fly
 
     # Define a destination from a given city
     def define_destination(origin, cities_to_fly, number_of_destinations, budget, token)
@@ -123,8 +130,8 @@ class RoutesController < ApplicationController
             return [1, [destination, number_of_destinations, budget], 'Sucess']
           else
             return [0, 1, "No budget to fly. Your trip ends on #{cities_to_fly[i]["origin"]}"]
-          end
-        end
+          end # End of if
+        end # End of if
 
         if i + 1 == cities_to_fly.length
           # If no cities has a next destination. We pick up the first possible city to be the destination
@@ -133,8 +140,9 @@ class RoutesController < ApplicationController
           budget -= (cities_to_fly[i]["price"]["total"].to_f)/2
           # debugger
           return [1, [destination, number_of_destinations, budget], "You can't go further from #{origin}. Your trip ends on #{cities_to_fly[i]["origin"]}"]
-        end
+        end # End of if
         i += 1
-      end
-    end
-end
+      end # End of while
+    end  # End of define_destination
+  end  # End of private
+end # End of class

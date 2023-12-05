@@ -27,11 +27,14 @@
           </div>
         </div>
     </div>
-
-
-
-
-      <% end %>
+    <% end %>
 
   </div>
 </div>
+<% if user_signed_in? %>
+  <% if @route.favorite?(current_user) %>
+    <%= button_to "Remove from Favorites", favorite_path(@route), method: "delete" %>
+  <% else %>
+    <%= button_to "Add to Favorites", favorite_path(@route), method: "post" %>
+  <% end %>
+<% end %>

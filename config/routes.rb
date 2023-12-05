@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:show, :index, :show, :update, :destroy]
 
+  # put "/routes/:id/favorite", to: "routes#favorite", as: "favorite"
+  resources :favorites, only: [:create, :destroy]
+
 
   # Defines the root path route ("/")
   # root "posts#index"

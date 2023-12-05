@@ -1,7 +1,13 @@
-.blue_circle_icon {
-  width: 50px;
-  height: 50px;
+.blue-circle-icon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
   border-radius: 50%;
   background-color: $ocean-blue;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight:bold;
+  font-size: 25px;
 }

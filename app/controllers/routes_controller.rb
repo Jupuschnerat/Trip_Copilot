@@ -10,6 +10,13 @@ class RoutesController < ApplicationController
   end # End of new
 
   def show
+    @total_price = @route.total_price
+  end
+
+  def details
+    @user = current_user
+    @route = Route.find(params[:id])
+    # additional details logic
   end
 
   def create
@@ -17,7 +24,7 @@ class RoutesController < ApplicationController
     @route.user = current_user
     @route.save
 
-    token = get_token
+    token = get_amadeus_token
     number_of_destinations = 0
     origin = @route.departure_place
     budget = @route.budget
@@ -94,18 +101,21 @@ class RoutesController < ApplicationController
 
   # ===== Methods used in the iteration =======
     # Get the token
-  def get_token
-    uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request['Content-Type'] = 'application/x-www-form-urlencoded'
-    request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
-    response = http.request(request)
-    response_json = JSON.parse(response.body)
-    token = response_json["access_token"]
-    return token
-  end # End of get_token
+  # Function to get Amadeus API token
+def get_amadeus_token
+  uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Post.new(uri.path)
+  request['Content-Type'] = 'application/x-www-form-urlencoded'
+  request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
+
+  response = http.request(request)
+  response_json = JSON.parse(response.body)
+
+  return response_json["access_token"]
+end
 
     # Find cities to fly from a given origin
   def find_cities_to_fly(origin, budget, token)
@@ -128,7 +138,7 @@ class RoutesController < ApplicationController
     next_destination = nil
     i = 0
     while next_destination == nil || next_destination[0] == 0
-      next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
+      next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget, token)
       if next_destination[0] == 1
         if (cities_to_fly[i]["price"]["total"].to_f)/2 < budget
           destination = cities_to_fly[i] # The city is a hash. Cities_to_fly is an array of hashs

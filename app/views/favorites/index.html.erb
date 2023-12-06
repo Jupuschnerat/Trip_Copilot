@@ -1,7 +1,20 @@
-<!-- app/views/favorites/index.html.erb -->
+<div class='backgroundpattern'>
+  <div class="container p-4">
+    <h2 class="p-1 mb-4 text-center"><strong>My Favorited Routes</strong></h2>
 
-<h1>Your Favorited Routes</h1>
-
-<% @favorited_routes.each do |route| %>
-  <p><%= link_to route.destinations, route_path(route) %></p>
-<% end %>
+    <% @favorited_routes.each do |route| %>
+    <div class="card mx-auto my-5">
+      <div class="card-body text-primary d-flex">
+        <div class="row">
+          <div class="col my-auto">
+            <i class="fa-solid fa-plane smallicon"></i>
+          </div>
+          <div class="col-8 my-auto">
+      <strong><%= link_to "#{current_user.full_name}'s route", route_path(route), class: "text-decoration-none" %></strong>
+    <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

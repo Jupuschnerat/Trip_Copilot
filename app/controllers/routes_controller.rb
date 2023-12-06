@@ -13,6 +13,7 @@ class RoutesController < ApplicationController
     @total_price = @route.total_price
   end # End of show
 
+
   def details
     @user = current_user
     @route = Route.find(params[:id])

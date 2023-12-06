@@ -5,8 +5,8 @@
 
     <%= button_to_favorite(@route) %>
 
-    <% @route.destinations.each do |destination| %>
     <div class="card mx-auto my-5">
+      <% @route.destinations.each do |destination| %>
       <div class="card-body text-primary d-flex">
         <div class="row">
           <div class="col my-auto mx-2">
@@ -30,7 +30,8 @@
           </div>
         </div>
     </div>
+    <% end %>
+    </div>
   </div>
-  <% end %>
-  </div>
+
 </div>

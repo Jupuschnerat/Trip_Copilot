@@ -17,7 +17,7 @@ class RoutesController < ApplicationController
     @route.user = current_user
     @route.save
 
-    token = get_token
+    token = RouteSuggestionsService.get_token
     number_of_destinations = 0
     origin = @route.departure_place
     budget = @route.budget
@@ -26,7 +26,7 @@ class RoutesController < ApplicationController
     while stop_route_builder == 0 && number_of_destinations < 3
 
       # Find possible cities to fly
-      cities_to_fly = find_cities_to_fly(origin, budget, token)
+      cities_to_fly = RouteSuggestionsService.find_cities_to_fly(origin, budget, token)
       if cities_to_fly[0] == 0
         stop_route_builder = 1
         user_message = cities_to_fly[2]
@@ -93,42 +93,13 @@ class RoutesController < ApplicationController
   end # End of route_params
 
   # ===== Methods used in the iteration =======
-    # Get the token
-  def get_token
-    uri = URI.parse("https://test.api.amadeus.com/v1/security/oauth2/token")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request['Content-Type'] = 'application/x-www-form-urlencoded'
-    request.body = "grant_type=client_credentials&client_id=#{ENV["AMADEUS_CLIENT_ID"]}&client_secret=#{ENV["AMADEUS_CLIENT_SECRET"]}"
-    response = http.request(request)
-    response_json = JSON.parse(response.body)
-    token = response_json["access_token"]
-    return token
-  end # End of get_token
-
-    # Find cities to fly from a given origin
-  def find_cities_to_fly(origin, budget, token)
-    begin
-      base_url = "https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=#{origin}&maxPrice=#{budget.floor}"
-      headers = {'Authorization' => "Bearer #{token}"}
-      api_return = URI.open(base_url, headers).read
-      api_return_json = JSON.parse(api_return)
-      cities_to_go = api_return_json["data"] # Arry of hashes
-      cities_to_go_ordered = cities_to_go.sort_by { |flight| flight['price']['total'].to_f}
-      # debugger
-      return [1, cities_to_go_ordered, 'Success']
-    rescue
-      return [0, 0, "No flights from this origin"]
-    end # End of begin
-  end # End of find_cities_to_fly
 
     # Define a destination from a given city
   def define_destination(origin, cities_to_fly, number_of_destinations, budget, token)
     next_destination = nil
     i = 0
     while next_destination == nil || next_destination[0] == 0
-      next_destination = find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
+      next_destination = RouteSuggestionsService.find_cities_to_fly(cities_to_fly[i]["destination"], budget,token)
       if next_destination[0] == 1
         if (cities_to_fly[i]["price"]["total"].to_f)/2 < budget
           destination = cities_to_fly[i] # The city is a hash. Cities_to_fly is an array of hashs

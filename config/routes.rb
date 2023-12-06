@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   # put "/routes/:id/favorite", to: "routes#favorite", as: "favorite"
   resources :favorites, only: [:index, :create, :destroy]
 
+  namespace :intake do
+    resources :departure_places, only: [:new, :create]
+    resources :budgets, only: [:new, :create]
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"

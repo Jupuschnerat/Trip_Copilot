@@ -2,12 +2,6 @@
   <div class="container p-4">
     <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
     <h6 class="m-3 mb-4">Trip summary</h6>
-    <% if current_user.favorite_routes.include?(@route) %>
-      <%= link_to "Remove from Favorites", favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    <% else %>
-      <%= button_to "Add to Favorites", favorites_path(route_id: @route.id), method: :post, remote: true %>
-    <% end %>
-
     <div class="card mx-auto my-5">
       <% @route.destinations.each do |destination| %>
       <div class="card-body text-primary d-flex">
@@ -25,6 +19,8 @@
           </div>
         </div>
       </div>
+      <% end %>
+      <% @route.destinations.each do |destination| %>
       <div class="card-footer bg-transparent border d-flex">
         <div class="row">
           <div class="col">
@@ -33,11 +29,19 @@
           </div>
         </div>
     </div>
+
     <% end %>
     <h1>Total Price</h1>
     <%# <% raise %>
     <p>The total price is: $ <%= @total_price.round(2) %></p>
-    </div>
-  </div>
 
+      <% end %>
+
+    </div>
+        <% if current_user.favorite_routes.include?(@route) %>
+          <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure you wanna remove this route from your favorites?" } %>
+        <% else %>
+          <%= button_to '<i class="fa-regular fa-heart smallicon"></i>'.html_safe, favorites_path(route_id: @route.id), method: :post, remote: true, class: "btn" %>
+        <% end %>
+  </div>
 </div>

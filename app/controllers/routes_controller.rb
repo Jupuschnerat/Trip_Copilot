@@ -11,7 +11,7 @@ class RoutesController < ApplicationController
 
   def show
     @total_price = @route.total_price
-  end
+  end # End of show
 
   def details
     @user = current_user
@@ -23,51 +23,10 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
     @route.user = current_user
     @route.save
-
-    token = get_amadeus_token
-    number_of_destinations = 0
     origin = @route.departure_place
     budget = @route.budget
-    stop_route_builder = 0
 
-    while stop_route_builder == 0 && number_of_destinations < 3
-
-      # Find possible cities to fly
-      cities_to_fly = find_cities_to_fly(origin, budget, token)
-      if cities_to_fly[0] == 0
-        stop_route_builder = 1
-        user_message = cities_to_fly[2]
-        p user_message
-        break # stops the loop
-      end  # End of if
-
-
-      # Define city to fly -> Define destination
-      destination = define_destination(origin, cities_to_fly[1], number_of_destinations, budget, token)
-      if destination[0] == 0
-        stop_route_builder = 1
-        user_message = destination[2]
-      end # End of if
-
-      # Persist destination on DB
-      @destination = Destination.new()
-      @destination.price = (destination[1][0]["price"]["total"].to_f)/2
-      @destination.transportation = "plane"
-      @destination.departure_day = destination[1][0]["departureDate"]
-      @destination.arrival_date = destination[1][0]["departureDate"]
-      @destination.departure_city = destination[1][0]["origin"]
-      @destination.arrival_city = destination[1][0]["destination"]
-      @destination.route = @route
-      @destination.save
-
-      # Updating budget, number_of_destinations and origin for next iteration
-      number_of_destinations = destination[1][1]
-      # debugger
-      budget = destination[1][2]
-      origin = @destination.arrival_city
-
-      # Repeat the process -> Go back to the begin of the loop
-    end # End of while
+    RouteSuggestionsService.build_route(origin, budget, @route)
 
     redirect_to route_path(@route)
   end
@@ -98,5 +57,4 @@ class RoutesController < ApplicationController
   def route_params
     params.require(:route).permit(:departure_place, :budget)
   end # End of route_params
-
-end
+end # End of RoutesController

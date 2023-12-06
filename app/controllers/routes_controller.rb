@@ -10,8 +10,7 @@ class RoutesController < ApplicationController
   end # End of new
 
   def show
-    # @total_price = calculate_total_price(@route.departure_place, @route.budget)
-
+    @total_price = @route.total_price
   end
 
   def details
@@ -117,27 +116,6 @@ def get_amadeus_token
 
   return response_json["access_token"]
 end
-
-  # def calculate_total_price(origin, budget)
-  #   token = get_amadeus_token
-
-  #   cities_to_fly, status = find_cities_to_fly(origin, budget, token)
-
-  #   total_price = 0
-  #   number_of_destinations = 0
-
-  #   while status == 'Success'
-  #     destination, number_of_destinations, status = define_destination(origin, cities_to_fly, number_of_destinations, budget, token)
-
-  #     if status == 'Success'
-  #       total_price += destination[0]["price"]["total"].to_f
-  #       origin = destination[0]["destination"]
-  #     end
-  #   end
-
-  #   return total_price
-  # end
-
 
     # Find cities to fly from a given origin
   def find_cities_to_fly(origin, budget, token)

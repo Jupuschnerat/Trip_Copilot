@@ -29,14 +29,14 @@
         <div class="row">
           <div class="col">
             <p class="card-text smallfont mb-1">Price</p>
-            $ <%= destination.price %>
+            $ <%= destination.price.round(2) %>
           </div>
         </div>
     </div>
     <% end %>
     <h1>Total Price</h1>
-    <% raise %>
-    <p>The total price is: <%= @total_price %></p>
+    <%# <% raise %>
+    <p>The total price is: $ <%= @total_price.round(2) %></p>
     </div>
   </div>
 

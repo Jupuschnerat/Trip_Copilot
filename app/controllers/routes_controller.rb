@@ -13,7 +13,6 @@ class RoutesController < ApplicationController
     @total_price = @route.total_price
   end # End of show
 
-
   def details
     @user = current_user
     @route = Route.find(params[:id])
@@ -58,5 +57,4 @@ class RoutesController < ApplicationController
   def route_params
     params.require(:route).permit(:departure_place, :budget)
   end # End of route_params
-
-end # End of class
+end # End of RoutesController

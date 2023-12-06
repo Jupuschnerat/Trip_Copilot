@@ -15,6 +15,12 @@ module Intake
         @route.user = current_user
         @route.save
         session.delete('departure_place')
+        debugger
+        origin = @route.departure_place
+        budget = @route.budget
+
+        RouteSuggestionsService.build_route(origin, budget, @route)
+
         redirect_to route_path(@route)
       else
         render :new, status: :unprocessable_entity

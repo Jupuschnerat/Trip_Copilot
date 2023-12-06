@@ -27,7 +27,7 @@
   <div class='subtitle pt-5 <%= 'mt-20' if params[:query].present? %>'>
     <% if params[:query].present? %>
       <div class="text-center py-4">
-        <a href="/routes/new" class="btn btnhp text-info btn_cta py-3 px-3 m-6">Build a full route</a>
+        <%= link_to "Build a full route", new_intake_departure_place_path, class: "btn btnhp text-info btn_cta py-3 px-3 m-6" %>
       </div>
     <% end %>
     <h1 class='text-primary text-center p-4'><strong>Explore the world with our trip suggestions</strong></h1>
@@ -62,7 +62,7 @@
   </div>
 
     <div class="text-center py-4">
-      <a href="/routes/new" class="btn btnhp text-info btn_cta py-3 px-3 m-6">Build my route</a>
+      <%= link_to "Build a full route", new_intake_departure_place_path, class: "btn btnhp text-info btn_cta py-3 px-3 m-6" %>
     </div>
 </div>
 

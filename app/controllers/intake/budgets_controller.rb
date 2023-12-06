@@ -8,17 +8,15 @@ module Intake
       @budget = Budget.new(budget_params)
 
       if @budget.valid?
-        full_params = budget_params.merge(
-          departure_place: session['departure_place']
-        )
+        full_params = budget_params.merge(session['departure_place'])
         @route = Route.new(full_params)
         @route.user = current_user
         @route.save
-        session.delete('departure_place')
-        debugger
+        # session.delete('departure_place')
         origin = @route.departure_place
         budget = @route.budget
 
+        debugger
         RouteSuggestionsService.build_route(origin, budget, @route)
 
         redirect_to route_path(@route)

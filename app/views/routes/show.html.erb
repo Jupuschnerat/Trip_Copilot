@@ -2,10 +2,10 @@
   <div class="container p-4">
     <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
     <h6 class="m-3 mb-4">Trip summary</h6>
-    <% if current_user.favorite_routes.include?(route) %>
-      <%= link_to "Remove from Favorites", favorite_path(route), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <% if current_user.favorite_routes.include?(@route) %>
+      <%= link_to "Remove from Favorites", favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <% else %>
-      <%= button_to "Add to Favorites", favorites_path(route_id: route.id), method: :post, remote: true %>
+      <%= button_to "Add to Favorites", favorites_path(route_id: @route.id), method: :post, remote: true %>
     <% end %>
 
     <div class="card mx-auto my-5">
@@ -34,6 +34,9 @@
         </div>
     </div>
     <% end %>
+    <h1>Total Price</h1>
+    <% raise %>
+    <p>The total price is: <%= @total_price %></p>
     </div>
   </div>
 

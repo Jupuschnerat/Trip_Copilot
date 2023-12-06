@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :routes do
     resources :bookings, only: [:new, :create]
     resources :destinations, except: [:destroy]
+    get 'details', to: 'routes#details'
   end
 
   resources :bookings, only: [:show, :index, :show, :update, :destroy]

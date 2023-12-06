@@ -10,7 +10,7 @@ class RoutesController < ApplicationController
   end # End of new
 
   def show
-  end # End of show
+  end
 
   def create
     @route = Route.new(route_params)

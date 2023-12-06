@@ -95,15 +95,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_173423) do
     t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
-  create_table "saved_routes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "route_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["route_id"], name: "index_saved_routes_on_route_id"
-    t.index ["user_id"], name: "index_saved_routes_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "full_name", default: "", null: false
     t.string "phone_number", default: "", null: false
@@ -128,6 +119,4 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_173423) do
   add_foreign_key "favorites", "users"
   add_foreign_key "locations", "cities"
   add_foreign_key "routes", "users"
-  add_foreign_key "saved_routes", "routes"
-  add_foreign_key "saved_routes", "users"
 end

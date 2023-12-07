@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'routes/:id/details', to: 'routes#details', as: :details
 
   resources :bookings, only: [:show, :index, :show, :update, :destroy]
+  get 'routes/:id/details', to: 'routes#details'
 
   # put "/routes/:id/favorite", to: "routes#favorite", as: "favorite"
   resources :favorites, only: [:index, :create, :destroy]

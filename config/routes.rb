@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :destinations, except: [:destroy]
   end
 
+  get 'routes/:id/details', to: 'routes#details', as: :details
+
   resources :bookings, only: [:show, :index, :show, :update, :destroy]
   get 'routes/:id/details', to: 'routes#details'
 

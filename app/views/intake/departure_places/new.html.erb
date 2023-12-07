@@ -1,6 +1,6 @@
 <div class='backgroundpattern'>
-  <div class="container form p-4 text-primary">
-    <h2 class="p-1 mb-4"><strong>Build your route</strong></h2>
+  <div class="container form p-4">
+    <h2 class="peachtext p-1 mb-4"><strong>Build your route</strong></h2>
 
     <%= simple_form_for(@departure_place) do |f| %>
     <div class="row justify-content-center text-primary">
@@ -9,11 +9,11 @@
                     autofocus: true %>
       </div>
     </div>
-      <div class="text-center pb-2">
-        <div class="btn btn-success">
+    <div class="text-center">
+      <div class="btn btn-success mt-4">
         <%= f.button :submit, "Next Step" %>
       </div>
     <% end %>
+    </div>
   </div>
-</div>
 </div>

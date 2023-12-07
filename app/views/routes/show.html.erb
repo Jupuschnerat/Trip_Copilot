@@ -3,21 +3,21 @@
     <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
     <div class="row">
       <div class="col mx-2">
-        <h6 class="m-3 mb-4"><strong>Trip summary</strong></h6>
+        <h6><strong>Trip summary</strong></h6>
       </div>
       <div class="col text-end mx-3">
         <% if current_user.favorite_routes.include?(@route) %>
-          <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure you wanna remove this route from your favorites?" } %>
+          <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this route from your favorites?" }, class: "peachtext" %>
         <% else %>
-          <%= button_to '<i class="fa-regular fa-heart smallicon"></i>'.html_safe, favorites_path(route_id: @route.id), method: :post, remote: true, class: "btn" %>
+          <%= button_to '<i class="fa-regular fa-heart smallicon"></i>'.html_safe, favorites_path(route_id: @route.id), method: :post, remote: true, class: "btn peachtext" %>
         <% end %>
       </div>
     </div>
-    <div class="card mx-auto my-5">
+    <div class="card mx-auto my-3">
       <% @route.destinations.each do |destination| %>
       <div class="card-body text-primary d-flex">
         <div class="row">
-          <div class="col my-auto mx-2">
+          <div class="col mx-2 my-auto">
             <i class="fa-solid fa-plane smallicon"></i>
           </div>
           <div class="col mx-3 my-auto">
@@ -33,7 +33,7 @@
       </div>
       <% end %>
       <div class="card-footer bg-transparent border d-flex">
-        <h6><strong>The total price is: $ <%= @total_price.round(2) %></strong></h6>
+        <h6 class="my-3"><strong>The total price is: $ <%= @total_price.round(2) %></strong></h6>
       </div>
     </div>
   </div>

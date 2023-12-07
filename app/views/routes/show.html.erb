@@ -1,19 +1,23 @@
 <div class='backgroundpattern'>
   <div class="container p-4">
-    <h2 class="peachtext p-1 mb-4 text-center"><strong>Your route</strong></h2>
+    <h2 class="peachtext p-1 mb-4 mt-3 text-center"><strong>Your route</strong></h2>
+    <div class="container align-items-center justify-content-center">
+      <div class="row routebanner mx-auto my-4 mb-5">
+      </div>
+    </div>
     <div class="row">
       <div class="col mx-2">
         <h6><strong>Trip summary</strong></h6>
       </div>
       <div class="col text-end mx-3">
         <% if current_user.favorite_routes.include?(@route) %>
-          <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this route from your favorites?" }, class: "peachtext" %>
+          <%= link_to '<i class="fa-solid fa-heart"></i>'.html_safe, favorite_path(@route), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this route from your favorites?" }, class: "peachtext favoriteicon" %>
         <% else %>
-          <%= button_to '<i class="fa-regular fa-heart smallicon"></i>'.html_safe, favorites_path(route_id: @route.id), method: :post, remote: true, class: "btn peachtext" %>
+          <%= button_to '<i class="fa-regular fa-heart smallicon"></i>'.html_safe, favorites_path(route_id: @route.id), method: :post, remote: true, class: "btn peachtext favoriteicon" %>
         <% end %>
       </div>
     </div>
-    <div class="card mx-auto my-3">
+    <div class="card mx-auto mb-3">
       <% @route.destinations.each do |destination| %>
       <div class="card-body text-primary d-flex">
         <div class="row">
@@ -28,13 +32,20 @@
             <p class="card-text smallfont mb-1">To</p>
             <strong><%= destination.arrival_city %></strong>
           </div>
-          <p class="card-text smallfont mt-2"><strong>$<%= destination.price.round(2) %></strong></p>
         </div>
       </div>
       <% end %>
       <div class="card-footer bg-transparent border d-flex">
-        <h6 class="my-3"><strong>The total price is: $ <%= @total_price.round(2) %></strong></h6>
+        <div class="row">
+          <div class="col">
+            <p class="card-text smallfont mb-1 mt-1">Total Price</p>
+            <h6 class="mx-2"><strong>$<%= @total_price.round(2) %></strong></h6>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="text-center mt-4">
+      <%= link_to "See details", details_path, class: "btn btn-secondary text-white" %>
     </div>
   </div>
 </div>

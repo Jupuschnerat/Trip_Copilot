@@ -1,0 +1,32 @@
+<div class='backgroundpattern'>
+  <div class="container p-4">
+    <h2 class="peachtext p-1 mb-5 mt-3 text-center"><strong>Route details</strong></h2>
+    <% @route.destinations.each do |destination| %>
+    <div class="card mx-auto my-3">
+      <div class="card-body text-primary d-flex">
+        <div class="row">
+          <div class="col mx-2 my-auto">
+            <i class="fa-solid fa-plane smallicon"></i>
+          </div>
+          <div class="col mx-3 my-auto">
+            <p class="card-text smallfont mb-1">From</p>
+            <strong><%= destination.departure_city %></strong>
+          </div>
+          <div class="col mx-5 my-auto">
+            <p class="card-text smallfont mb-1">To</p>
+            <strong><%= destination.arrival_city %></strong>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex">
+        <div class="row">
+          <div class="col mx-2">
+            <p class="card-text smallfont mb-0 mt-1">Price</p>
+            <h6 class="mx-2 my-0"><strong>$<%= destination.price.round(2) %></strong></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

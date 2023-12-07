@@ -15,8 +15,13 @@ class RoutesController < ApplicationController
 
   def details
     @user = current_user
-    @route = Route.find(params[:id])
-    # additional details logic
+    begin
+      @route = Route.find(params[:id])
+      # additional details logic
+    # rescue ActiveRecord::RecordNotFound
+    #   flash[:error] = "Route not found"
+    #   redirect_to root_path # Redirect to a suitable page
+    end
   end
 
   def create

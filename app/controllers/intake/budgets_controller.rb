@@ -16,7 +16,6 @@ module Intake
         origin = @route.departure_place
         budget = @route.budget
 
-        debugger
         RouteSuggestionsService.build_route(origin, budget, @route)
 
         redirect_to route_path(@route)

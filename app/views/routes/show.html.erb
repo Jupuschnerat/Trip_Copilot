@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col mx-2">
-        <h6><strong>Trip summary</strong></h6>
+        <h5><strong>Trip summary</strong></h5>
       </div>
       <div class="col text-end mx-3">
         <% if current_user.favorite_routes.include?(@route) %>
@@ -44,8 +44,11 @@
         </div>
       </div>
     </div>
+    <div class="text-center">
+      <%= link_to "See details", details_path, class: "btn btn-secondary text-white mt-3" %>
+    </div>
     <div class="text-center mt-4">
-      <%= link_to "See details", details_path, class: "btn btn-secondary text-white" %>
+    <%= link_to "<strong>Search another route</strong>".html_safe, new_intake_departure_place_path, class: "text-primary text-decoration-none" %>
     </div>
   </div>
 </div>

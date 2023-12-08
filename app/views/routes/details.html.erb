@@ -2,31 +2,33 @@
   <div class="container p-4">
     <h2 class="peachtext p-1 mb-5 mt-3 text-center"><strong>Trip Details</strong></h2>
     <% @route.destinations.each do |destination| %>
-    <div class="card mx-auto my-3">
-      <div class="card-body text-primary d-flex">
-        <div class="row">
-          <div class="col mx-2 my-auto">
-            <i class="fa-solid fa-plane smallicon"></i>
-          </div>
-          <div class="col mx-3 my-auto">
-            <p class="card-text smallfont mb-1">From</p>
-            <strong><%= destination.departure_city %></strong>
-          </div>
-          <div class="col mx-5 my-auto">
-            <p class="card-text smallfont mb-1">To</p>
-            <strong><%= destination.arrival_city %></strong>
+    <div class="citycard mx-auto mt-4">
+      <div class="row no-gutters">
+        <div class="col-4">
+          <div class="citypic">
           </div>
         </div>
-      </div>
-      <div class="card-footer bg-transparent d-flex">
-        <div class="row">
-          <div class="col mx-2">
-            <p class="card-text smallfont mb-0 mt-1">Price</p>
-            <h6 class="mx-2 my-0"><strong>$<%= destination.price.round(2) %></strong></h6>
+        <div class="col-4 p-3">
+          <div class="card-body mb-2 text-primary">
+            <p class="card-text smallfont mb-1">From</p>
+            <p class="card-text"><strong><%= destination.departure_city %></strong></p>
+            <p class="card-text smallfont mb-1">Departure day</p>
+            <p class="card-text"><strong><%= destination.departure_day %></strong></p>
+            <p class="card-text smallfont mb-1">Price</p>
+            <p class="card-text mb-0"><strong>$<%= destination.price.round(2) %></strong></p>
+          </div>
+        </div>
+        <div class="col-4 p-3">
+          <div class="card-body mb-3 text-primary">
+            <p class="card-text smallfont mb-1">To</p>
+            <p class="card-text"><strong><%= destination.arrival_city %></strong></p>
+            <p class="card-text smallfont mb-1">Arrival day</p>
+            <p class="card-text"><strong><%= destination.arrival_date %></strong></p>
           </div>
         </div>
       </div>
     </div>
     <% end %>
+    <p class="text-end mt-3"><%= link_to "<strong><i class='fa-solid fa-chevron-left smallesticon'></i> Back</strong>".html_safe, route_path(@route), class: "text-primary text-decoration-none" %></p>
   </div>
 </div>

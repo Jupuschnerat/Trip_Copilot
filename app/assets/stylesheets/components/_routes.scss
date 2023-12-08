@@ -7,3 +7,21 @@
   background-position: bottom;
   border-radius: 6px;
 }
+#loadingpage {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(asset_path("illustration.png"));
+}
+.citypic {
+  background-image: url(asset_path("paris.webp"));
+  height: 100%;
+  width: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  position: relative;
+}

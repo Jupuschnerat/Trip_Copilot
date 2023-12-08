@@ -1,6 +1,5 @@
 .cover {
-  background-image: url(asset_path("bannertest.png"));
-  // height: 900px;
+  background-image: url(asset_path("banner.png"));
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -70,7 +69,7 @@
 // * Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
   .cover {
-    background-image: url(asset_path("bannertest.png"));
+    background-image: url(asset_path("banner.png"));
     height: 300px;
     width: 100%;
     background-size: cover;
@@ -107,7 +106,7 @@
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
   .cover {
-    background-image: url(asset_path("bannertest.png"));
+    background-image: url(asset_path("banner.png"));
     height: 350px;
     width: 100%;
     background-size: cover;
